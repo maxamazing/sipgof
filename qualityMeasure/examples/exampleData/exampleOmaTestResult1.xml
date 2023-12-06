@@ -1,0 +1,569 @@
+<XML HtShellXmlFormat="ShsHeader">
+  <Value Name="ID" Value="{E5FE60C1-F443-40F5-B606-109984EB6CDC}" Comment=""/>
+  <Value Name="USERID" Value="sk" Comment=""/>
+  <Value Name="CLIENTID" Value="Canto_15" Comment=""/>
+  <Value Name="MEASUREMENTID" Value="YUEMatrix" Comment=""/>
+  <Value Name="MEASUREMENTPROFILEID" Value="SM02_YeEn_P" Comment=""/>
+  <Value Name="MEASUREMENTPROFILENAME" Value="SM02_YeEn_P" Comment=""/>
+  <Value Name="MEASUREMENTDATE" Value="2020 06 4 04 21 49 55 0000" Comment=""/>
+  <Value Name="MEASUREMENTSTATUS" Value="COMPLETE" Comment=""/>
+  <Subheader Name="MEASUREMENTRESULT" Comment="">
+    <Value Name="TransducerType" Value="headphone" Comment=""/>
+    <Subheader Name="BlockGroups" Comment="">
+      <Subheader Name="" Comment=" BlockGroups 0">
+        <Subheader Name="Blocks" Comment="">
+          <Subheader Name="" Comment="">
+            <Value Name="Noise" Value="id icra5-250" Comment=""/>
+            <Value Name="SpeechLevel" Value="65" Comment=""/>
+            <Value Name="SNR" Value="0" Comment=""/>
+            <Value Name="AudiometerCalibrationReference" Value="yuematrixnoise" Comment=""/>
+            <Value Name="LevelControl" Value="OldenburgerLX 0.5" Comment=""/>
+            <Value Name="FitControl" Value="OldenburgerLXP 0.5" Comment=""/>
+            <Value Name="DefaultTargetNoise" Value="id yuematrixnoise" Comment=""/>
+            <Value Name="LevFitControl" Value="OldenburgerLX 0.5|OldenburgerLXP 0.5" Comment=""/>
+            <Value Name="TestList" Value="20/yuematrix20.06" Comment=""/>
+            <Value Name="SpeechChannelLevels" Value="0" Comment=""/>
+            <Value Name="NoiseChannelLevels" Value="0" Comment=""/>
+            <Value Name="TrialsDone" Value="20" Comment=""/>
+            <Value Name="Status" Value="done" Comment=""/>
+            <Value Name="NoiseDescriptionId" Value="&quot;icra5-250 signals&quot;" Comment=""/>
+            <Value Name="NoiseDisplayName" Value="icra5-250" Comment=""/>
+            <Subheader Name="Trials" Comment="">
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="32981.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="32981.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="麗霞 帶走 十個 彩色嘅 書簽" Comment=""/>
+                <Value Name="TargetWords" Value="麗霞 帶走 十個 彩色嘅 書簽" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="65" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="1" Comment=""/>
+                <Value Name="SNR" Value="0" Comment=""/>
+                <Value Name="Intelligibility" Value="1" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="1893057" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="65" Comment=""/>
+                <Value Name="TotalLevel" Value="68.0103" Comment=""/>
+                <Value Name="SelectedWords" Value="麗霞 帶走 十個 彩色嘅 書簽" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="73567.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="73567.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="靜雯 收起 六個 全新嘅 飯盒" Comment=""/>
+                <Value Name="TargetWords" Value="靜雯 收起 六個 全新嘅 飯盒" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="57.5" Comment=""/>
+                <Value Name="SNR" Value="-7.5" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="57.5" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="428109" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="57.5" Comment=""/>
+                <Value Name="TotalLevel" Value="58.2108" Comment=""/>
+                <Value Name="SelectedWords" Value="靜雯 收起 六個 全新嘅 飯盒" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="1" Comment=""/>
+                <Value Name="Intelligibility" Value="1" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="86432.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="86432.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="禮謙 搵倒 廿個 普通嘅 擦膠" Comment=""/>
+                <Value Name="TargetWords" Value="禮謙 搵倒 廿個 普通嘅 擦膠" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="50" Comment=""/>
+                <Value Name="SNR" Value="-15" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="50" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="3657946" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="50" Comment=""/>
+                <Value Name="TotalLevel" Value="50.1352" Comment=""/>
+                <Value Name="SelectedWords" Value="禮謙 搵倒 廿個 普通嘅 擦膠" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="1" Comment=""/>
+                <Value Name="Intelligibility" Value="1" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="78579.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="78579.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="靜雯 拎住 六個 乾淨嘅 手袋" Comment=""/>
+                <Value Name="TargetWords" Value="靜雯 拎住 六個 乾淨嘅 手袋" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="42.5" Comment=""/>
+                <Value Name="SNR" Value="-22.5" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="42.5" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="2586949" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="42.5" Comment=""/>
+                <Value Name="TotalLevel" Value="42.5244" Comment=""/>
+                <Value Name="SelectedWords" Value="靜雯 拎住 - - -" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.4" Comment=""/>
+                <Value Name="Intelligibility" Value="0.85" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="65980.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="65980.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="永康 整爛 十個 彩色嘅 衣架" Comment=""/>
+                <Value Name="TargetWords" Value="永康 整爛 十個 彩色嘅 衣架" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="43.5638" Comment=""/>
+                <Value Name="SNR" Value="-21.4362" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="43.5638" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="4077557" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="43.5638" Comment=""/>
+                <Value Name="TotalLevel" Value="43.5949" Comment=""/>
+                <Value Name="SelectedWords" Value="- - 十個 - 衣架" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.4" Comment=""/>
+                <Value Name="Intelligibility" Value="0.76" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="40629.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="40629.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="慧妍 睇見 七個 污糟嘅 手袋" Comment=""/>
+                <Value Name="TargetWords" Value="慧妍 睇見 七個 污糟嘅 手袋" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="44.6276" Comment=""/>
+                <Value Name="SNR" Value="-20.3724" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="44.6276" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="2524164" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="44.6276" Comment=""/>
+                <Value Name="TotalLevel" Value="44.6673" Comment=""/>
+                <Value Name="SelectedWords" Value="慧妍 睇見 七個 - -" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.6" Comment=""/>
+                <Value Name="Intelligibility" Value="0.733333" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.3" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="25656.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="25656.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="美恩 整爛 七個 好舊嘅 枕頭" Comment=""/>
+                <Value Name="TargetWords" Value="美恩 整爛 七個 好舊嘅 枕頭" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="43.8731" Comment=""/>
+                <Value Name="SNR" Value="-21.1269" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="43.8731" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="22406" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="43.8731" Comment=""/>
+                <Value Name="TotalLevel" Value="43.9065" Comment=""/>
+                <Value Name="SelectedWords" Value="美恩 整爛 七個 - -" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.6" Comment=""/>
+                <Value Name="Intelligibility" Value="0.714286" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.4" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="01248.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="01248.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="﻿子朗 想買 三個 奇怪嘅 紙箱" Comment=""/>
+                <Value Name="TargetWords" Value="﻿子朗 想買 三個 奇怪嘅 紙箱" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="43.1186" Comment=""/>
+                <Value Name="SNR" Value="-21.8814" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="43.1186" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="3523899" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="43.1186" Comment=""/>
+                <Value Name="TotalLevel" Value="43.1467" Comment=""/>
+                <Value Name="SelectedWords" Value="- 想買 三個 - 紙箱" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.6" Comment=""/>
+                <Value Name="Intelligibility" Value="0.7" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.6" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="27114.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="27114.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="美恩 賣咗 兩個 醜樣嘅 花樽" Comment=""/>
+                <Value Name="TargetWords" Value="美恩 賣咗 兩個 醜樣嘅 花樽" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="42.3641" Comment=""/>
+                <Value Name="SNR" Value="-22.6359" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="42.3641" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="2951123" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="42.3641" Comment=""/>
+                <Value Name="TotalLevel" Value="42.3877" Comment=""/>
+                <Value Name="SelectedWords" Value="美恩 - - - 花樽" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.4" Comment=""/>
+                <Value Name="Intelligibility" Value="0.666667" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.7" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="12093.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="12093.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="心穎 帶走 一個 得意嘅 鬧鐘" Comment=""/>
+                <Value Name="TargetWords" Value="心穎 帶走 一個 得意嘅 鬧鐘" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="42.8992" Comment=""/>
+                <Value Name="SNR" Value="-22.1008" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="42.8992" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="744237" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="42.8992" Comment=""/>
+                <Value Name="TotalLevel" Value="42.9259" Comment=""/>
+                <Value Name="SelectedWords" Value="心穎 帶走 - - 鬧鐘" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.6" Comment=""/>
+                <Value Name="Intelligibility" Value="0.66" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.9" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="51278.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="51278.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="幸怡 想買 三個 乾淨嘅 紙箱" Comment=""/>
+                <Value Name="TargetWords" Value="幸怡 想買 三個 乾淨嘅 紙箱" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="42.5197" Comment=""/>
+                <Value Name="SNR" Value="-22.4803" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="42.5197" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="3426655" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="42.5197" Comment=""/>
+                <Value Name="TotalLevel" Value="42.5442" Comment=""/>
+                <Value Name="SelectedWords" Value="- - 三個 乾淨嘅 紙箱" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.6" Comment=""/>
+                <Value Name="Intelligibility" Value="0.654545" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-22.1" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="14132.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="14132.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="心穎 需要 兩個 普通嘅 擦膠" Comment=""/>
+                <Value Name="TargetWords" Value="心穎 需要 兩個 普通嘅 擦膠" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="42.1402" Comment=""/>
+                <Value Name="SNR" Value="-22.8598" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="42.1402" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="3006610" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="42.1402" Comment=""/>
+                <Value Name="TotalLevel" Value="42.1626" Comment=""/>
+                <Value Name="SelectedWords" Value="- 需要 - 普通嘅 擦膠" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.6" Comment=""/>
+                <Value Name="Intelligibility" Value="0.65" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-22.3" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="86714.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="86714.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="禮謙 搵倒 八個 醜樣嘅 花樽" Comment=""/>
+                <Value Name="TargetWords" Value="禮謙 搵倒 八個 醜樣嘅 花樽" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="41.7607" Comment=""/>
+                <Value Name="SNR" Value="-23.2393" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="41.7607" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="4005512" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="41.7607" Comment=""/>
+                <Value Name="TotalLevel" Value="41.7812" Comment=""/>
+                <Value Name="SelectedWords" Value="- - - - -" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0" Comment=""/>
+                <Value Name="Intelligibility" Value="0.6" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.9" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="98805.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="98805.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="偉強 拎住 九個 冇用嘅 電話" Comment=""/>
+                <Value Name="TargetWords" Value="偉強 拎住 九個 冇用嘅 電話" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="43.1065" Comment=""/>
+                <Value Name="SNR" Value="-21.8935" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="43.1065" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="4564132" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="43.1065" Comment=""/>
+                <Value Name="TotalLevel" Value="43.1345" Comment=""/>
+                <Value Name="SelectedWords" Value="- 拎住 - - 電話" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.4" Comment=""/>
+                <Value Name="Intelligibility" Value="0.585714" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.9" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="39356.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="39356.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="麗霞 留低 四個 好舊嘅 枕頭" Comment=""/>
+                <Value Name="TargetWords" Value="麗霞 留低 四個 好舊嘅 枕頭" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="43.3757" Comment=""/>
+                <Value Name="SNR" Value="-21.6243" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="43.3757" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="3709776" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="43.3757" Comment=""/>
+                <Value Name="TotalLevel" Value="43.4055" Comment=""/>
+                <Value Name="SelectedWords" Value="- - 四個 - -" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.2" Comment=""/>
+                <Value Name="Intelligibility" Value="0.56" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.6" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="04741.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="04741.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="﻿子朗 需要 八個 奇怪嘅 書簽" Comment=""/>
+                <Value Name="TargetWords" Value="﻿子朗 需要 八個 奇怪嘅 書簽" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="44.1832" Comment=""/>
+                <Value Name="SNR" Value="-20.8168" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="44.1832" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="4491984" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="44.1832" Comment=""/>
+                <Value Name="TotalLevel" Value="44.219" Comment=""/>
+                <Value Name="SelectedWords" Value="﻿子朗 需要 八個 - -" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.6" Comment=""/>
+                <Value Name="Intelligibility" Value="0.5625" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.6" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="60065.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="60065.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="永康 睇見 一個 全新嘅 電話" Comment=""/>
+                <Value Name="TargetWords" Value="永康 睇見 一個 全新嘅 電話" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="43.9332" Comment=""/>
+                <Value Name="SNR" Value="-21.0668" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="43.9332" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="2831151" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="43.9332" Comment=""/>
+                <Value Name="TotalLevel" Value="43.967" Comment=""/>
+                <Value Name="SelectedWords" Value="永康 - 一個 全新嘅 電話" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.8" Comment=""/>
+                <Value Name="Intelligibility" Value="0.576471" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.8" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="43323.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="43323.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="慧妍 收起 四個 污糟嘅 鬧鐘" Comment=""/>
+                <Value Name="TargetWords" Value="慧妍 收起 四個 污糟嘅 鬧鐘" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="43.1832" Comment=""/>
+                <Value Name="SNR" Value="-21.8168" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="43.1832" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="4234370" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="43.1832" Comment=""/>
+                <Value Name="TotalLevel" Value="43.2117" Comment=""/>
+                <Value Name="SelectedWords" Value="- 收起 四個 污糟嘅 鬧鐘" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.8" Comment=""/>
+                <Value Name="Intelligibility" Value="0.588889" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.9" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="59890.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="59890.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="幸怡 留低 九個 得意嘅 衣架" Comment=""/>
+                <Value Name="TargetWords" Value="幸怡 留低 九個 得意嘅 衣架" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="42.4332" Comment=""/>
+                <Value Name="SNR" Value="-22.5668" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="42.4332" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="2246808" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="42.4332" Comment=""/>
+                <Value Name="TotalLevel" Value="42.4572" Comment=""/>
+                <Value Name="SelectedWords" Value="幸怡 留低 九個 - -" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0.6" Comment=""/>
+                <Value Name="Intelligibility" Value="0.589474" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-22" Comment=""/>
+              </Subheader>
+              <Subheader Name="" Comment="">
+                <Value Name="Status" Value="done" Comment=""/>
+                <Value Name="TestListItem" Value="97407.wav" Comment=""/>
+                <Value Name="TestListSection" Value="Sentences" Comment=""/>
+                <Value Name="Speech" Value="97407.wav" Comment=""/>
+                <Value Name="DisplayedWords" Value="偉強 賣咗 廿個 冇用嘅 飯盒" Comment=""/>
+                <Value Name="TargetWords" Value="偉強 賣咗 廿個 冇用嘅 飯盒" Comment=""/>
+                <Value Name="WordWeight" Value="0.2 0.2 0.2 0.2 0.2" Comment=""/>
+                <Value Name="SpeechLevel" Value="42.1832" Comment=""/>
+                <Value Name="SNR" Value="-22.8168" Comment=""/>
+                <Value Name="SpeechChannelLevels" Value="42.1832" Comment=""/>
+                <Value Name="NoiseChannelLevels" Value="65" Comment=""/>
+                <Value Name="NoiseStartPos" Value="239446" Comment=""/>
+                <Value Name="SpeechLevel_SPL" Value="42.1832" Comment=""/>
+                <Value Name="TotalLevel" Value="42.2058" Comment=""/>
+                <Value Name="SelectedWords" Value="- - - - -" Comment=""/>
+                <Value Name="TrialIntelligibility" Value="0" Comment=""/>
+                <Value Name="Intelligibility" Value="0.56" Comment=""/>
+                <Value Name="LevFitDone" Value="1" Comment=""/>
+                <Value Name="SRT 0.5" Value="-21.8" Comment=""/>
+              </Subheader>
+            </Subheader>
+            <Value Name="TrialsTotal" Value="20" Comment=""/>
+            <Value Name="Results" Value="&quot;SRT 0.5&quot;" Comment=""/>
+            <Value Name="ResultUnits" Value="dB" Comment=""/>
+            <Value Name="TargetIntelligibility" Value="0.5" Comment=""/>
+            <Value Name="TestListLength" Value="20" Comment=""/>
+            <Value Name="ReferenceBlock" Value="1" Comment=""/>
+            <Value Name="Duration" Value="150295" Comment=""/>
+            <Value Name="BlockStart" Value="2020 06 4 04 21 50 06 0029" Comment=""/>
+            <Value Name="Intelligibility" Value="0.56" Comment=""/>
+            <Subheader Name="LevFit" Comment=""/>
+            <Value Name="SRT 0.5" Value="-21.8" Comment=""/>
+            <Value Name="BlockEnd" Value="2020 06 4 04 21 52 36 0712" Comment=""/>
+          </Subheader>
+        </Subheader>
+        <Value Name="GroupStart" Value="2020 06 4 04 21 50 06 0029" Comment=""/>
+        <Value Name="GroupEnd" Value="2020 06 4 04 21 52 36 0712" Comment=""/>
+      </Subheader>
+    </Subheader>
+    <Subheader Name="Paths" Comment="">
+      <Value Name="Signals" Value="${~YUEMATRIX}/signals.SM02_YeEn_P" Comment=""/>
+      <Value Name="TestLists" Value="${~YUEMATRIX}/testlist.MULTITALK" Comment=""/>
+    </Subheader>
+    <Value Name="TestList" Value="${~YUEMATRIX}/testlist.MULTITALK/testlist.hd" Comment=""/>
+    <Value Name="R&amp;D" Value="1" Comment=""/>
+    <Value Name="Demo" Value="0" Comment=""/>
+    <Value Name="MeasurementProfileId" Value="SM02_YeEn_P" Comment=""/>
+    <Value Name="UserId" Value="sk" Comment=""/>
+    <Value Name="ClientId" Value="Canto_15" Comment=""/>
+    <Value Name="ConfigFile" Value="${~YUEMATRIX}/etc/YUEMATRIX.cfg" Comment=""/>
+    <Value Name="MeasurementProfileName" Value="SM02_YeEn_P" Comment=""/>
+    <Value Name="editable" Value="1" Comment=""/>
+    <Value Name="MeasurementResultId" Value="{E5FE60C1-F443-40F5-B606-109984EB6CDC}" Comment=""/>
+    <Value Name="MeasurementStatus" Value="COMPLETE" Comment=""/>
+    <Subheader Name="Settings" Comment="">
+      <Value Name="Audiometer" Value="softwareaudiometer" Comment=""/>
+    </Subheader>
+    <Value Name="GroupShuffle" Value="none" Comment=""/>
+    <Value Name="BlockShuffle" Value="none" Comment=""/>
+    <Value Name="TrialShuffle" Value="full" Comment=""/>
+    <Value Name="StoreMode" Value="Block" Comment=""/>
+    <Value Name="MeasurementId" Value="YUEMatrix" Comment=""/>
+    <Value Name="ClientLanguage" Value="yue" Comment=""/>
+    <Value Name="CalibrationReference" Value="yuematrixnoise" Comment=""/>
+    <Value Name="ClosedResponse" Value="0" Comment=""/>
+    <Value Name="LevelUnit" Value="HL" Comment=""/>
+    <Value Name="OriginalNoise" Value="id yuematrixnoise" Comment=""/>
+    <Value Name="MaskingNoise" Value="id yuematrixnoise" Comment=""/>
+    <Subheader Name="AdditionalScripts" Comment="">
+      <Subheader Name="DSP" Comment="">
+        <Subheader Name="InitHardware" Comment="">
+          <Subheader Name="OnStart" Comment="">
+            <Value Name="" Value="shell: call ${~ETC}/DSP/dsp_init.hts %{Target}" Comment=""/>
+          </Subheader>
+        </Subheader>
+        <Subheader Name="AudiometerCommit" Comment="">
+          <Subheader Name="OnEnd" Comment="">
+            <Value Name="" Value="shell: call ${~ETC}/DSP/dsp_trial.hts %{Target}" Comment=""/>
+          </Subheader>
+        </Subheader>
+      </Subheader>
+      <Subheader Name="VST" Comment="">
+        <Subheader Name="InitHardware" Comment="">
+          <Subheader Name="OnStart" Comment="">
+            <Value Name="" Value="shell: call ${~ETC}/DSP/vst_init.hts %{Target}" Comment=""/>
+          </Subheader>
+          <Subheader Name="OnEnd" Comment="">
+            <Value Name="" Value="shell: call ${~ETC}/DSP/vst_init_plugins.hts %{Target}" Comment=""/>
+          </Subheader>
+        </Subheader>
+        <Subheader Name="AudiometerCommit" Comment="">
+          <Subheader Name="OnEnd" Comment="">
+            <Value Name="" Value="shell: call ${~ETC}/DSP/vst_trial.hts %{Target}" Comment=""/>
+          </Subheader>
+        </Subheader>
+      </Subheader>
+    </Subheader>
+    <Value Name="LevelControl" Value="OldenburgerLX 0.5" Comment=""/>
+    <Value Name="FitControl" Value="OldenburgerLXP 0.5" Comment=""/>
+    <Value Name="Equalisation" Value="any" Comment=""/>
+    <Subheader Name="AudiometerPresets" Comment="">
+      <Value Name="" Value="softwareaudiometer: preset -r /sound/headphone/DefaultHeadphone {FC167256-9B4F-46C5-91DF-3CB677A041AF}" Comment=""/>
+      <Value Name="" Value="softwareaudiometer: preset -r /sound/headphone/{FC167256-9B4F-46C5-91DF-3CB677A041AF}/TransducerName HDA200" Comment=""/>
+      <Value Name="" Value="softwareaudiometer: preset -r '/sound/headphone/{FC167256-9B4F-46C5-91DF-3CB677A041AF}/AudiometerChannels/&quot;0&quot;' US2x2US4x4_US2x2Out02_0" Comment=""/>
+      <Value Name="" Value="softwareaudiometer: preset -r '/sound/headphone/{FC167256-9B4F-46C5-91DF-3CB677A041AF}/AudiometerChannels/&quot;1&quot;' US2x2US4x4_US2x2Out01_0" Comment=""/>
+      <Value Name="" Value="softwareaudiometer: preset -r '/sound/headphone/{FC167256-9B4F-46C5-91DF-3CB677A041AF}/SoundChannels/&quot;0&quot;' US2x2US4x4_US2x2Out02_0" Comment=""/>
+      <Value Name="" Value="softwareaudiometer: preset -r '/sound/headphone/{FC167256-9B4F-46C5-91DF-3CB677A041AF}/SoundChannels/&quot;1&quot;' US2x2US4x4_US2x2Out01_0" Comment=""/>
+      <Value Name="" Value="softwareaudiometer: preset -r /sound/headphone/DefaultAudiometerChannels &quot;US2x2US4x4_US2x2Out02_0 US2x2US4x4_US2x2Out01_0&quot;" Comment=""/>
+      <Value Name="" Value="sound: preset DefaultHeadphone '{FC167256-9B4F-46C5-91DF-3CB677A041AF}'" Comment=""/>
+    </Subheader>
+    <Value Name="AllowConvolutions" Value="1" Comment=""/>
+    <Subheader Name="LevelOffset" Comment="">
+      <Subheader Name="HDA200" Comment="">
+        <Subheader Name="HL" Comment="">
+          <Value Name="yuematrixnoise" Value="0" Comment=""/>
+        </Subheader>
+      </Subheader>
+    </Subheader>
+    <Subheader Name="InitOptionsHeader" Comment=""/>
+    <Value Name="TransducerName" Value="HDA200" Comment=""/>
+    <Value Name="TransducerId" Value="-" Comment=""/>
+    <Value Name="TransducerPort" Value="PORT&lt;US2x2US4x4_US2x2Out02_0&gt;US2x2US4x4_US2x2Out02_0" Comment=""/>
+    <Value Name="TransducerDescription" Value="&quot;&quot;" Comment=""/>
+    <Value Name="TransducerDisplayName" Value="&quot;left: HDA200&quot;" Comment=""/>
+    <Value Name="TransducerDisplayNameShort" Value="&quot;left: HDA200&quot;" Comment=""/>
+    <Value Name="TransducerPortName" Value="left" Comment=""/>
+    <Value Name="MeasurementCreation" Value="2020 06 4 04 21 49 55 0965" Comment=""/>
+    <Value Name="MeasurementStart" Value="2020 06 4 04 21 50 06 0013" Comment=""/>
+    <Value Name="MeasurementEnd" Value="2020 06 4 04 21 52 36 0735" Comment=""/>
+    <Value Name="MeasurementDuration" Value="150295" Comment=""/>
+    <Value Name="ReadableResult" Value="50% threshold: -21.8 dB; Intelligibility: 56.0 %; Headphones; Channels: left: HDA200; Speech level: 65.0; Noise level: 65.0; Noise: icra5-250;" Comment=""/>
+    <Value Name="BrowseableResult" Value="'SRT 0.5: -21.8 dB; Intelligibility: 0.56; TransducerType: headphone; Channels: left: HDA200; SpeechLevel: 65; NoiseLevel: 65; Noise: &quot;id icra5-250&quot;;'" Comment=""/>
+    <Value Name="ModuleFileVersion" Value="2.7.0.0" Comment=""/>
+    <Value Name="MeasurementLastChange" Value="2020 06 4 04 21 52 37 0984" Comment=""/>
+    <Value Name="UserIdLastChange" Value="sk" Comment=""/>
+  </Subheader>
+  <Value Name="DBCLASTCHANGE" Value="2020 06 4 04 21 52 38 0000" Comment=""/>
+</XML>
