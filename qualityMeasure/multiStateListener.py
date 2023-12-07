@@ -649,7 +649,7 @@ class Person:
         self.trackState.append(self.curState)
         return response
 
-    def printSettings(self, toConsole=True, tex=True):
+    def printSettings(self, toConsole=True, tex=False):
         """
         Print a summary of the settings
 
@@ -665,7 +665,11 @@ class Person:
             all settings of the person as formatted table
 
         """
-        import pandas as pd
+        try:
+            import pandas as pd
+        except ModuleNotFoundError:
+            raise ModuleNotFoundError(
+                "you need to install pandas to print a table of the parameters of the psychometric function")
 
         # errorcheck
         if self.states == []:  # there are no known internal states
@@ -688,11 +692,11 @@ class Person:
                                  state.laps,
                                  state.alpha,
                                  state.beta],
-                                ["stimulus at threshold",
-                                 "threshold",
-                                 "slope/ %/1",
-                                 "guessRate",
-                                 "lapsRate",
+                                ["stimulus at threshold/ dB",
+                                 "threshold/ perc.",
+                                 "slope/ perc./dB",
+                                 "guessRate/ perc.",
+                                 "lapsRate/ perc.",
                                  "alpha",
                                  "beta"], [state.name])
 
@@ -708,13 +712,13 @@ class Person:
 
         dat = pd.concat([dat, mat])
 
+        dat.style.format("{{:2.2f}}".format)
         if tex:
-            # dat.style.format("{{:2.2f}}".format)
             text = dat.style.to_latex()
             # romove some stuff so that it compiles with no hassle
             return text.replace('\\toprule', ' ').replace('\\midrule', ' ').replace('\\bottomrule', ' ').replace("\n", " ")
         else:
-            return dat.style.to_latex()
+            return dat.style.to_string()
 
     def plot(self, axs=None, figsize=[17, 14], loc="upper right", stimulusUnits="SNR/dB", showStdBinom=True, showStats=False, snrRange=None, showLegend=True, heightRatios=[1, 1.5]):
         """

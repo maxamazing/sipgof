@@ -594,18 +594,18 @@ def mostLikelyModelSinglePsy(trackSnr, trackResponse, plot=False):
     def model1(x):
         return model(trackSnr, trackResponse, params=x)["ll"]
     x1 = [np.quantile(trackSnr, 0.5), 0.1425]  # turningpoint and slope
-    x1_bounds = opt.Bounds([-np.inf, 0.1425], [np.inf, 0.1425])
+    x1_bounds = opt.Bounds([-np.inf, 0.01], [np.inf, 0.3])
     optres1 = opt.minimize(lambda x: -model1(x), x1, bounds=x1_bounds)
 
     fig = None
     if plot:
         plt.close('all')  # important if inlinefigures are disabled
         fig, axs = plt.subplots(
-            1, 1, figsize=[20, 10])
+            2, 1, figsize=[10, 7])
         dummy = Person.fromData(trackSnr, trackResponse, "singleState")
         dummy.states = model(trackSnr, trackResponse, optres1.x)["st"]
         dummy.trackState = model(trackSnr, trackResponse, optres1.x)["sl"]
-        dummy.plot(axs=axs[:, 0])
+        dummy.plot(axs=axs, showStats=False)
 
     if optres1.success == True:
         return {
