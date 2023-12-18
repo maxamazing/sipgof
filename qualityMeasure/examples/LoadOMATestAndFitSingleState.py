@@ -24,7 +24,7 @@ readerDict = reader.OMAparse(folder)
 
 # iterate through all files
 for measID, dat in readerDict.items():
-    res = modelCollection.mostLikelyModelSinglePsy(dat.snr, dat.response, plot=True)
+    res = modelCollection.mostLikelyModelSinglePsy(dat["snr"], dat["response"], plot=True)
     plt.show()
 
     print("measurement: \n\t{}\nSRT50: \n\t{}\nslope: \n\t{}\n\n".format(

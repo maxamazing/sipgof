@@ -15,7 +15,7 @@ import qualityMeasure.adaptiveProcedureReader as reader
 from pathlib import Path
 import os
 
-#run the script from anywhere
+# run the script from anywhere
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
@@ -27,7 +27,8 @@ readerDict = reader.OMAparse(folder)
 measID = list(readerDict.keys())[0]  # only use the first entry
 
 dat = readerDict[measID]
-res = modelCollection.mostLikelyModelA(dat.snr, dat.response, plot=True)
+res = modelCollection.mostLikelyModelA(dat["snr"], dat["response"], plot=True)
 plt.show()
 
-print("measurement: \n\t{}\nlog likelihood difference (PiPGOF): \n\t{}\n\n".format(measID, res[2]-res[1], ))
+print("measurement: \n\t{}\nlog likelihood difference (SiPGOF): \n\t{}\n\n".format(
+    measID, res[2]-res[1], ))
