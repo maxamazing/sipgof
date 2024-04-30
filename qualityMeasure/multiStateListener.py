@@ -60,7 +60,7 @@ class State:
             raise Exception("slope: invalid Settings [{}]".format(slope))
         if (threshold-guessRate) <= 0:
             raise Exception(
-                """threshold [{}] <=guessRate [{}]
+                """threshold [{}] undefined: <=guessRate [{}]
                 : invalid Settings""".format(threshold, guessRate))
         if (1-guessRate-lapsRate) <= 0:
             raise Exception(
@@ -68,7 +68,7 @@ class State:
                 : invalid Settings""".format(guessRate, lapsRate))
         if (1-lapsRate-threshold) <= 0:
             raise Exception(
-                """threshold [{}]>=1-lapsRate [{}]
+                """threshold [{}] undefined: >=1-lapsRate [{}]
                 : invalid Settings""".format(threshold, lapsRate))
 
         self.gues = guessRate
