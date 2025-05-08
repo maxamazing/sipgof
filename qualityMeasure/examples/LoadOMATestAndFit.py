@@ -7,7 +7,7 @@ The track is compared for the two model fits:
     concentrated
     two-state (unconcentrated) as zero hypothesis
 
-@author: max scharf maximilian.scharf_at_uol.de
+@author: max scharf Do 8. Mai 13:09:03 CEST 2025 maximilian.scharf_at_uol.de
 """
 import matplotlib.pyplot as plt
 import qualityMeasure.multiStateListenerModelCollection as modelCollection

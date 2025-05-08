@@ -205,11 +205,5 @@ poetry.toml
 
 # End of https://www.toptal.com/developers/gitignore/api/python,octave
 
-###no figures
-figures/
-figs/
-examples/figures/
-examples/adaptive/
-phaseSpaceExplore/
 
 

@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-run the adaptive procedure quality measures for a one actual datasets in the 
+run the adaptive procedure quality measures for one empirical track in the 
 Oldenburger Measurement Platform xml-markup, Assuming a unix platform with unix paths.
 The track is compared for the two model fits:
     concentrated
     two-state (unconcentrated) as zero hypothesis
 This commented tutorial shows how to implement a custom psychometric model
-@author: max scharf maximilian.scharf_at_uol.de
+@author: max scharf Do 8. Mai 13:06:14 CEST 2025 maximilian.scharf_at_uol.de
 """
 import matplotlib.pyplot as plt
-import qualityMeasure.multiStateListenerModelCollection as modelCollection
 import qualityMeasure.adaptiveProcedureReader as reader
-from qualityMeasure.multiStateListener import genStates
-from qualityMeasure.multiStateListener import mostLikelyStatesList
+from qualityMeasure.multiStateListener import genStates, baumWelch
 from pathlib import Path
 import os
 import numpy as np
@@ -32,7 +30,7 @@ measID = list(readerDict.keys())[0]  # only use the first entry
 dat = readerDict[measID]
 
 
-def myOwnModelFit(trackSnr, trackResponse, lapsRate=0.0, plotOnce=False):
+def myOwnModelFit(trackSnr, trackResponse, lapsRate=0.0):
     """return the log-likelihood difference of a single-state-model
     and a two-state-model to describe the provided track
 
@@ -51,11 +49,8 @@ def myOwnModelFit(trackSnr, trackResponse, lapsRate=0.0, plotOnce=False):
                                 threshold=0.5,  # ->define the threshold percentage
                                 )  # -> 2 remaining deg. of freedom per internal state
 
-        if plot:
-            estimStates[0].plot(x[0]-5, x[0]+5)
-
         # calculate which sequence of states best describes the data
-        return mostLikelyStatesList(trackSnr, trackResponse, testItemsPerTrial, estimStates)["ll"]
+        return baumWelch(trackSnr, trackResponse, testItemsPerTrial, estimStates, useViterbi=False)["ll"]
 
     # initialize a vector which contains the free parameters of the model. here it is:
         # threshold state 1
@@ -83,30 +78,29 @@ def myOwnModelFit(trackSnr, trackResponse, lapsRate=0.0, plotOnce=False):
     # we optimize these parameters too
     optres1 = opt.minimize(lambda x: -model(x), x1, bounds=x1_bounds)
 
-    # plot the psychometric function of the model
-    model(optres1.x, plotOnce)
-
-    # The difference in log-likelihood is a measure of consistence of the track!
+    # The difference in log-likelihood is a measure of consistency of the track!
     return model(optres2.x)-model(optres1.x)
 
+# %%
+# check if everything works
 
-print("measurement: \n\t{}\nlog likelihood difference (SiPGOF): \n\t{}\n\n".format(
-    measID, myOwnModelFit(dat["snr"], dat["response"])))
 
+lapsRate = 0.1
+print("measurement: \n\t{}\nlog likelihood difference (SiPGOF) for a lapsrate of {}: \n\t{}\n\n".format(lapsRate,
+                                                                                                        measID, myOwnModelFit(dat["snr"], dat["response"], lapsRate=lapsRate)))
 
 # %%
-# we can now calculate the log likelihood differnce as function of the lapsrate of our model.
+# we can now calculate the log likelihood difference as function of the lapsrate of our model.
 
-lapsRate = np.linspace(0, 0.49, num=10)  # we cant go below 50% when we have data on the SRT50
 
-ll = list(map(lambda lr: myOwnModelFit(dat["snr"], dat["response"], lr, plotOnce=True), lapsRate))
-plt.title("psychometric functions with different laps rates")
-plt.show()
+lapsRate = np.linspace(0.1, 0.40, num=10)  # we cant go below 50% when we have data on the SRT50
+ll = list(map(lambda lr: myOwnModelFit(dat["snr"], dat["response"], lr), lapsRate))
 
 # %%
 # we observe that the likelihood of the single-state model and the likelihood of the two-state model
-# get closer. In the limit of a lapsrate=1-guessrate, the two psychometric functions are exactly equal
-# you can change the value at line 49 to 1/3 (this would be the guessrate of a sentence test with 3 alternatives, the OLKISA as example has 1/7)
+# get closer. In the limit of a lapsrate=1-guessrate, the two psychometric functions should be equal
+# you can change the value at line 47 to 1/3 (this would be the guessrate of a sentence test with 3 alternatives, the OLKISA as example has 1/7)
+
 
 plt.plot(lapsRate*100, ll)
 plt.xlabel("lapsrate/%")

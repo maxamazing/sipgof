@@ -6,7 +6,7 @@ Supports:
     OMA ("Oldenburger measurement application") xml-style markup for matrix sentence tests
         (medical software, sold by Hoerzentrum Oldenburg, see: https://www.hz-ol.de/en/oma.html)
 
-@author: max scharf maximilian.scharf_at_uol.de
+@author: max scharf Do 8. Mai 13:11:48 CEST 2025 maximilian.scharf_at_uol.de
 """
 
 import xml.etree.ElementTree as ET  # OMA reader

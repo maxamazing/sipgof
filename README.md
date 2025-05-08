@@ -3,6 +3,7 @@ Use a package manager like anaconda to create an environment to work in. You do 
 
 	conda create --name "testEnv"
 	conda activate testEnv
+	conda install pip
 
 install this package to current environment with editing enabled. 
 The promptline should change to something like this: **(testEnv) me@myPc ~/pathToSiPGOF$**

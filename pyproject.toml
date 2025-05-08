@@ -1,0 +1,35 @@
+#max scharf Di 8. Apr 16:25:52 CEST 2025 maximilian.scharf_at_uol.de
+#install the package in editable state with pip install -e <myproject_folder> to keep on working on this package
+
+
+[build-system]
+requires = ["setuptools >= 64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "consitencyMeasure"
+version = "1.0.1" # see: https://peps.python.org/pep-0440/
+dependencies = ["matplotlib",
+      		"numpy",
+                "pathlib",
+                "scipy",
+]
+requires-python = ">=3.8"
+authors = [
+  {name = "Maximilain Karl Scharf", email = "maximilian.scharf@uni-oldenburg.de"},
+]
+maintainers = [
+  {name = "Maximilain Karl Scharf", email = "maximilian.scharf@uni-oldenburg.de"}
+]
+description = "A measure of consitency for psychometric data"
+readme = "README.md"
+license = "GPL-3.0"
+#license-files = ["LICEN[CS]E.*"]
+keywords = ["psychometrics",  "attention", "adaptive procedures", "multi state listener", "quality control", "consistency measure"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python",
+  "Intended Audience :: Researcher",
+  "Topic :: Scientific/Engineering :: Human Machine Interfaces",
+]
+

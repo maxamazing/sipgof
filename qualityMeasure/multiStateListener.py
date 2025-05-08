@@ -4,13 +4,14 @@
 python 3.12
 Multistate-listener model
 
-@author: max scharf maximilian.scharf_at_uol.de
+@author: max scharf Do 8. Mai 13:11:32 CEST 2025 maximilian.scharf_at_uol.de
 """
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.offsetbox import AnchoredText
 import scipy.optimize as opt  # fitting most likely models
 import warnings
+import math
 
 
 class undefState:
@@ -28,15 +29,15 @@ class State:
 
         Parameters
         ----------
-        guessRate  : double
+        guessRate  : float
             context free forced choice: propto 1/number of choices
-        lapsRate: double
+        lapsRate: float
             pobabbility of making errors at optimal presentation
-        threshold : double
+        threshold : float
             percentage correct (0,1) at which the Threshold is probed
-        slope : double
+        slope : float
             slope of psychometric function at threshold stmulation
-        thresStim : double
+        thresStim : float
             value of the stimulus at the threshold
         name : string
             name of the state
@@ -96,7 +97,7 @@ class State:
 
         Parameters
         ----------
-        snr : double
+        snr : float
             signal to noise ratio of test.
 
         INFORMATION: the number of alternative choices has an influence on the psychometric function
@@ -141,189 +142,35 @@ class State:
    #######################################################################"""
 
 
-def transMatFromStatesList(states):
+def stateLikelihood(snr, numHit, numMiss, state):
     """
-    generate the transitionmatrix from a list of states
+    calculate the likelihood that the observed number of hits and misses was emitted by the state
 
     Parameters
     ----------
-    states: list
-        list of states, containing IDs
-
-    Returns
-    -------
-    transitionmatrix
-
-    """
-
-    #                |transprob to A |transprob to B
-    # -------------------------------------------------
-    # coming from A  |  [[  x        |     x  ],
-    # -------------------------------------------------
-    # coming from B  |   [  x        |     x  ]]
-
-    transMat = np.zeros([max(states)+1, max(states)+1])
-    for curState, nextState in zip(states, states[1:]):
-        transMat[curState, nextState] += 1
-
-    # normalize
-    ret = []
-    for n, row in enumerate(transMat):
-        with np.errstate(invalid='raise'):
-            try:
-                ret.append((row/sum(row)).tolist())
-            except:
-                tmp = np.zeros(max(states)+1).tolist()
-                # make the transitionmatrix a valid matrix with the assumption that state n stays in n
-                tmp[n] = 1
-                ret.append(tmp)
-    return ret
-
-
-def logLikelihoodFromTransmat(transMat, states):
-    """
-    calculate the likelihood that the list of state-IDs was the result
-    of the transition matrix
-
-    Parameters
-    ----------
-    transMat:matrix (optional)
-        transitionmatrix of the states, if undefined:
-        equal transition probabilities are assumed.
-    states: list of unsigned
-        contains index of previous states in order of occurance
-        states[0] is the state that corresponds to the first trial
-        index must be a valid index of statesList
-
-    Returns
-    -------
-    logLikelihood
-
-    """
-    if transMat is not None:
-        checkTransMat(transMat, max(states)+1)
-
-    #                |transprob to A |transprob to B
-    # -------------------------------------------------
-    # coming from A  |  [[  x        |     x  ],
-    # -------------------------------------------------
-    # coming from B  |   [  x        |     x  ]]
-
-    tmpll = 0
-    for curState, nextState in zip(states, states[1:]):
-        with np.errstate(divide='raise'):
-            try:
-                tmpll += np.log(transMat[curState][nextState])
-            except FloatingPointError:
-                raise Exception("The transition matrix does not permit the state-"
-                                "transition ID{} to ID{}".format(curState, nextState))
-    return tmpll
-
-
-def mostLikelyState(snr, numHit, numMiss, statesList):
-    """
-    return the most likely internal state given a response.
-    The influence of the transitionmatrix can not be included
-    at this point, because it is not defined.
-    ----------
-    snr : double
+    snr : float
         signal to noise ratio.
     numHit : unsigned interger
         response # correct anwser during a single trial.
     numMiss : unsigned interger
         response # incorrect answer during a single trial.
-    statesList: list
+    statesList: state object
         list of states.
 
     Returns
     -------
-    index of most likely state, logLikelihood
+    float
+        likelihood.
 
     """
+    tmpl = 1
+    for n in range(numHit):
+        tmpl *= state.likely(snr, True)  # may sometimes produce nan
+    for n in range(numMiss):
+        tmpl *= state.likely(snr, False)  # may sometimes produce nan
 
-    if statesList == []:
-        raise Exception("no valid states defined")
-    np.seterr(divide="ignore")
-
-    ll = []  # container for loglikelihood of each possible state
-    for i, s in enumerate(statesList):
-        tmpll = 0
-        for n in range(numHit):
-            tmpll += np.log(s.likely(snr, True))  # may smoetimes produce nan
-        for n in range(numMiss):
-            tmpll += np.log(s.likely(snr, False))  # may smoetimes produce nan
-
-        # include the binomial coefficient
-        tmpll += np.log(np.math.factorial(numHit+numMiss) /
-                        (np.math.factorial(numHit)*np.math.factorial(numMiss)))
-
-        ll.append(tmpll)
-
-    nMax = np.nanargmax(ll)
-    np.seterr(divide="warn")
-    return nMax, ll[nMax]
-
-
-def mostLikelyStatesList(trackSnr, trackResp, testItemsPerTrial,
-                         statesList, useTransMat=False):
-    """
-    Calculate the most likely list of states for the given data
-
-    -------
-    tackSnr : double-list
-        list of snr of an adaptive procedure
-    trackResp : double list on interval [0,1]
-        list of responses of an adaptive procedure
-    testItemsPerTrial : int
-        number of testitems for one adaptive step="trial"
-    statesList: list
-        list of states
-    useTransMat:boolean, optional
-        use the transitionmatrix of the states to caluculate the likelihood 
-        that the estimated stateslist is the results of the transition matrix
-
-    Returns
-    -------
-    dict
-    ll:
-        likelihood of this sequence
-    sl:
-        list of most likely state-sequence
-    pc:
-        dict of Percentual content sorted by statename:
-            "how often the state was present according to this prediction"
-
-    """
-    if max(trackResp) > 1 or max(trackResp) < 0 or len(trackSnr) == 0:
-        raise Exception("ivalid response Track.")
-    if len(trackResp) != len(trackSnr):
-        raise Exception("tracks do not have the same length.")
-
-    def conv(resp):  # covert response to number Hit/Miss
-        numHit = resp*testItemsPerTrial
-        if not numHit.is_integer():
-            raise Exception(
-                "response does not match the number of testitems per trial.")
-        return int(numHit), int(testItemsPerTrial-numHit)
-
-    # calculate the log-likelihood from each trial
-    sl = []
-    ll = 0
-    for snr, resp in zip(trackSnr, trackResp):
-        s, tmpll = mostLikelyState(
-            snr, *conv(resp), statesList)
-        sl.append(s)
-        ll += tmpll
-
-    # add log-likelihood from transitionMatrix
-    if useTransMat:
-        transMat = transMatFromStatesList(sl)
-        ll += logLikelihoodFromTransmat(transMat, sl)
-
-    pc = {}
-    for e, s in enumerate(statesList):
-        pc[s.name] = sl.count(e)
-    return {"ll": ll, "sl": sl, "pc": pc}
+    # include the binomial coefficient
+    return tmpl*math.factorial(numHit+numMiss)/(math.factorial(numHit)*math.factorial(numMiss))
 
 
 def genStates(params, thresholdStimulus=None, slope=None, guessRate=None, lapsRate=None, threshold=None):
@@ -405,7 +252,260 @@ def genStates(params, thresholdStimulus=None, slope=None, guessRate=None, lapsRa
     return states
 
 
-def modelA(trackSnr, trackResponse, params):
+def forwardBackward(trackSnr, trackResponse, states, transMat, firstStateDistr, testItemsPerTrial):
+    """
+    implements the forward-backward algorithm to calculate the forward and backward matrices
+    given the list of states-objects, initial state-distribution and transitionmatrix
+
+    Parameters
+    ----------
+    trackSnr : list of float
+        presented stimulus.
+    trackResponse : list of float
+        measured response.
+    states : states object
+        HMM states.
+    transMat : estimate of the transition matrix
+        has to match the numer of provided states.
+    firstStateDistr : probability of being in a given state at the first observation
+        The asumed starting state
+
+    Returns
+    -------
+    alpha and beta matrix
+
+    """
+
+    #                |transprob to A |transprob to B
+    # -------------------------------------------------
+    # coming from A  |  [[  x        |     x  ],
+    # -------------------------------------------------
+    # coming from B  |   [  x        |     x  ]]
+
+    # errorcheck
+    checkTransMat(transMat, len(states))
+    if len(trackSnr) != len(trackResponse):
+        raise Exception("number of Observations and Stimuly noes not match!")
+    if sum(firstStateDistr) >= 1+1e-9 or sum(firstStateDistr) <= 1-1e-9:
+        raise Exception("first State distr not a probability vector(sum({})={})".format(
+            firstStateDistr, sum(firstStateDistr)))
+    if len(firstStateDistr) != len(states):
+        raise Exception("first State distr does not match the number of provided states")
+
+    # shorthands
+    def b(stim, resp, state):
+        numHit = resp*testItemsPerTrial
+        if not numHit.is_integer():
+            raise Exception(
+                "response does not match the number of testitems per trial.")
+        return stateLikelihood(stim, int(numHit), int(testItemsPerTrial-numHit), state)
+
+    # a: transMat[startState_id, endState_id]
+
+    # ---------------
+
+    # construct forward matrix
+    alpha = np.ones([len(trackResponse), len(states),])  # [T,states]
+
+    # init at t=0
+    alpha[0] = list(
+        map(lambda s: b(trackSnr[0], trackResponse[0], s), states))*firstStateDistr
+
+    # iteratively fill the matrix from t=1->t=N-1
+    for i_t, (prev_alpha_t, stim, resp) in enumerate(zip(alpha, trackSnr[1:], trackResponse[1:]), start=1):
+        for i_s, s in enumerate(states):
+            alpha[i_t, i_s] = b(stim, resp, s)*np.inner(prev_alpha_t, transMat[:, i_s])
+
+    # ---------------
+
+    # construct backward matrix and init at t=T,
+    beta_rev = np.ones([len(trackResponse), len(states),])  # [T,states]
+
+    # iteratively fill the matrix from t=N-2->t=0
+    # define t and beta backwards!
+    for i_t, (prev_beta_t, stim, resp) in enumerate(zip(beta_rev, reversed(trackSnr[1:]), reversed(trackResponse[1:])), start=1):
+        for i_s, s in enumerate(states):
+            beta_rev[i_t, i_s] = np.inner(prev_beta_t*transMat[i_s, :],
+                                          list(map(lambda s: b(stim, resp, s), states)))
+
+    # log-likelihood of observation: np.log(sum(alpha[-1, :]))
+    return alpha, beta_rev[::-1]
+
+
+def viterbi(a, b, pi):
+    """
+    viterbi algorithm
+    updated 7.05
+
+    Parameters
+    ----------
+    a : transition matrix
+    b : emition probability at each time step
+    pi : initial distribution
+
+    Returns
+    -------
+    most likely state sequence.
+    log-likelihood of this sequence (should match the result of the forward algorithm)
+
+    """
+
+    #                |transprob to A |transprob to B
+    # -------------------------------------------------
+    # coming from A  |  [[  x        |     x  ],
+    # -------------------------------------------------
+    # coming from B  |   [  x        |     x  ]]
+
+    # init
+    delta = [pi*b[0]]
+    psi = []
+
+    # inductive
+    for b_t in b:
+        psi.append([int(np.argmax([delta[-1][i]*a[i, j] for i in range(len(pi))]))
+                   for j in range(len(pi))])
+        delta.append(np.array([max([delta[-1][i]*a[i, j] for i in range(len(pi))])
+                     for j in range(len(pi))])*b_t)
+
+    # ending
+    stateSeq = []  # in reverse
+    stateSeq.append(int(np.argmax(delta[-1])))
+
+    # backtrack in reverse
+    psi.reverse()
+    for p in psi:
+        stateSeq.append(p[stateSeq[-1]])
+
+    stateSeq.reverse()
+    return stateSeq, np.log(max(delta[-1]))
+
+
+# global variables of the transition matrix and initial distribution for baumwelch:
+# hold results from previous run to initialize next run with a better estimate for faster convergence
+bw_a = None
+bw_pi = None
+
+
+def baumWelch(trackSnr, trackResponse, testItemsPerTrial, states, useViterbi=False):
+    """
+    implement the Baum-Welch algorithm to compute (some of) the maximum likelihood HMM parameters:
+        transition matrix and imitial state-distribution
+
+    Parameters
+    ----------
+    trackSnr : list of float
+        presented stimulus.
+    trackResponse : list of float
+        measured response.
+    states : states object
+        HMM states.
+    transMat : estimate of the transition matrix
+        has to match the numer of provided states.
+    firstStateDistr : probability of being in a given state at the first observation
+        The asumed starting state
+    useViterbi: bool DEFAULT=False
+        include an estimate of the most likely state sequence in the results.
+
+    Returns
+    -------
+    dict
+    ll:
+        log-likelihood of this sequence (with forward algorithm)
+
+    sl:
+        list of most likely state-sequence (only if viterbi==True)
+    pc:
+        dict of Percentual content sorted by statename:(only if viterbi==True)
+            "how often the state was present according to this prediction"
+    vll:
+        log-likelihood of this sequence (with viterbi algorithm, only if viterbi==True)
+    a:
+        Transitionmatrix
+    """
+
+    # shorthands
+    def b(stim, resp, state):
+        numHit = resp*testItemsPerTrial
+        if not numHit.is_integer():
+            raise Exception(
+                "response does not match the number of testitems per trial.")
+        return stateLikelihood(stim, int(numHit), int(testItemsPerTrial-numHit), state)
+    # a: transMat[startState_id, endState_id]
+
+    def prob(t):
+        # shorthand notation for the probability to be in state i at time t and j at time t+1
+        # index with prob(t)[i,j]
+        tmp = np.ones([len(states)]*2)
+        for i, s_i in enumerate(states):
+            for j, s_j in enumerate(states):
+                tmp[i, j] = alpha[t, i]*bw_a[i, j]*beta[t+1, j] * \
+                    b(trackSnr[t+1], trackResponse[t+1], s_j)
+        return tmp
+
+    # initialize with defaults or use results from previous run
+    global bw_a
+    if bw_a is not None and np.shape(bw_a) == (len(states), len(states)):
+        pass
+    else:
+        bw_a = np.ones([len(states)]*2)/len(states)
+    global bw_pi
+    if bw_pi is not None and len(bw_pi) == len(states):
+        pass
+    else:
+        bw_pi = np.ones(len(states))/len(states)
+
+    def runViterbi(a, pi):
+        sl, vll = viterbi(a, np.array([[b(stim, resp, state) for state in states]
+                                       for stim, resp in zip(trackSnr, trackResponse)]), pi)
+        pc = {}
+        for e, s in enumerate(states):
+            pc[s.name] = sl.count(e)
+        return {"ll": logLikelihood, "sl": sl, "pc": pc, "vll": vll, "a": bw_a}
+
+    # remaining parameters
+    epsilon = 1e-5  # smallest logLikelihood increase that counts as convergence
+    nMax = 100
+    logLikelihood = None
+
+    for n in range(nMax):
+
+        alpha, beta = forwardBackward(trackSnr, trackResponse, states,
+                                      bw_a, bw_pi, testItemsPerTrial)
+
+        # calculate intermediate results
+        gamma = [alpha_t*beta_t/np.inner(alpha_t, beta_t) for alpha_t, beta_t in zip(alpha, beta)]
+        xi = []
+        for t in range(len(alpha)-1):
+            divident = prob(t)
+            xi.append(divident/np.sum(divident))
+
+        # update variables:
+        bw_pi = gamma[0]
+        bw_a = np.sum(xi, axis=0)/np.sum(gamma[: -1], axis=0)[:, np.newaxis]  # [i,j]
+
+        # normalize (pi and a are not probability matrices because of machine precision)
+        bw_pi /= sum(bw_pi)
+        bw_a /= np.sum(bw_a, 1)[:, np.newaxis]
+
+        # convergence criterion
+        logLikelihood_new = np.log(sum(alpha[-1, :]))
+        if n != 0 and abs(logLikelihood_new-logLikelihood) < epsilon:
+            # print("converged in n={} steps".format(n))
+            if not useViterbi:
+                return {"ll": logLikelihood_new, "sl": None, "pc": None, "vll": None, "a": bw_a}
+            else:
+                return runViterbi(bw_a, bw_pi)
+        else:
+            logLikelihood = logLikelihood_new
+
+    # print("not converged")
+    if not useViterbi:
+        return {"ll": logLikelihood, "sl": None, "pc": None, "vll": None, "a": bw_a}
+    else:
+        return runViterbi(bw_a, bw_pi)
+
+
+def modelA(trackSnr, trackResponse, params, optimizerMode=False):
     """
     generate a listening model with fixed slope for all states.
     The amount of internal states is deduced from
@@ -422,6 +522,8 @@ def modelA(trackSnr, trackResponse, params):
         measured response.
     params : list of float
         paramters of states that will be deserialized to the settings
+    optimizerMode: bool
+        only return likelihood if true
 
     Returns
     -------
@@ -435,7 +537,7 @@ def modelA(trackSnr, trackResponse, params):
             list of most likely state-sequence
         pc:
             dict of Percentual content sorted by statename:
-                "how often the state was present according to this prediction"
+                "how often the state was present according to this model"
 
     """
     # errorcheck for common mistakes
@@ -455,12 +557,18 @@ def modelA(trackSnr, trackResponse, params):
                             slope=0.1425,     # average slope for english/cantonese matrix test
                             )  # -> 1 remaining deg. of freedom per internal state (SRT50)
 
-    return {"st": estimStates, **mostLikelyStatesList(trackSnr, trackResponse, testItemsPerTrial, estimStates)}
+    return {"st": estimStates, **baumWelch(trackSnr,
+                                           trackResponse,
+                                           testItemsPerTrial,
+                                           estimStates,
+                                           not optimizerMode)}
 
 
 def mostLikelyModelA(trackSnr, trackResponse, plot=True):
     """return the likelihood of both a single-state-model
     and a two-state-model to describe the provided track.
+    This is the procedure, which is used in the JASA article:
+        A consistency measure for psychometric measurements
 
     Parameters
     ----------
@@ -492,14 +600,14 @@ def mostLikelyModelA(trackSnr, trackResponse, plot=True):
 
     # twoState
     def model2(x):
-        return model(trackSnr, trackResponse, params=x)["ll"]
+        return model(trackSnr, trackResponse, params=x, optimizerMode=True)["ll"]
     x2 = [np.quantile(trackSnr, 0.25), np.quantile(
         trackSnr, 0.75), ]  # turningpoint
     optres2 = opt.minimize(lambda x: -model2(x), x2)
 
     # singleState
     def model1(x):
-        return model(trackSnr, trackResponse, params=x)["ll"]
+        return model(trackSnr, trackResponse, params=x, optimizerMode=True)["ll"]
     x1 = [np.quantile(trackSnr, 0.5)]  # turningpoint
     optres1 = opt.minimize(lambda x: -model1(x), x1)
 
@@ -509,17 +617,21 @@ def mostLikelyModelA(trackSnr, trackResponse, plot=True):
         fig, axs = plt.subplots(
             2, 2, gridspec_kw={"height_ratios": [1, 1.5]}, figsize=[20, 10])
         dummy = Person.fromData(trackSnr, trackResponse, "singleState")
-        dummy.states = model(trackSnr, trackResponse, optres1.x)["st"]
-        dummy.trackState = model(trackSnr, trackResponse, optres1.x)["sl"]
+        tmp = model(trackSnr, trackResponse, optres1.x)
+        dummy.states = tmp["st"]
+        dummy.trackState = tmp["sl"]
+        dummy.transMat = tmp["a"]
         dummy.plot(axs=axs[:, 0])
 
         dummy = Person.fromData(trackSnr, trackResponse, "twoState")
-        dummy.states = model(trackSnr, trackResponse, optres2.x)["st"]
-        dummy.trackState = model(trackSnr, trackResponse, optres2.x)["sl"]
+        tmp = model(trackSnr, trackResponse, optres2.x)
+        dummy.states = tmp["st"]
+        dummy.trackState = tmp["sl"]
+        dummy.transMat = tmp["a"]
         dummy.plot(axs=axs[:, 1])
 
-    deltaThres = model(trackSnr, trackResponse, optres2.x)["st"][0].thresStim -\
-        model(trackSnr, trackResponse, optres2.x)["st"][0].thresStim
+    deltaThres = model(trackSnr, trackResponse, optres2.x)[
+        "st"][0].thresStim - model(trackSnr, trackResponse, optres2.x)["st"][0].thresStim
     return {
         1: model1(optres1.x),
         2: model2(optres2.x),
@@ -533,7 +645,7 @@ def mostLikelyModelA(trackSnr, trackResponse, plot=True):
     }
 
 
-def checkTransMat(transMat, dim):
+def checkTransMat(transMat, dim, epsilon=1e-9):
     """
     raises warning or exception if mistakes are found
 
@@ -541,6 +653,8 @@ def checkTransMat(transMat, dim):
     ----------
     transMat : matrix
     dim : needed dimensions
+    epsilon: float
+        if the sums of rowas equal 1 with an accuracy of epsilon, raise no error
 
     Returns
     -------
@@ -550,9 +664,9 @@ def checkTransMat(transMat, dim):
 
     # errorcheck transitionmatrix
     for n, s in enumerate(np.sum(transMat, 1)):
-        if s != 1:
+        if s < 1-epsilon or s > 1+epsilon:
             raise Exception(
-                "transitionmatrix not a probability matrix:"
+                "transitionmatrix not a probability matrix (epsilon={}):".format(epsilon) +
                 "check column {}: [{}]".format(n, transMat))
     # if dim != np.size(transMat, 0) or dim != np.size(transMat, 1):
     #     warnings.warn("transitionMatrix<->statesList dimension mismatch")
@@ -607,20 +721,20 @@ class Person:
 
     def probe(self, snr, nTestItem=1):
         """
-        do a trial at given SNR, 
+        do a trial at given SNR,
         return the percent correct e[0,1]
         and transition to the next internal state
 
         Parameters
         ----------
-        snr : double
+        snr : float
             signal to noise ratio of test.
         nTestItem : integer
             how many trials per test. default=1
 
         Returns
         -------
-        double
+        float
             ratio of correct answers.
 
         """
@@ -649,78 +763,7 @@ class Person:
         self.trackState.append(self.curState)
         return response
 
-    def printSettings(self, toConsole=True, tex=False):
-        """
-        Print a summary of the settings
-
-        Parameters
-        ----------
-        toConsole : bool, optional
-            print information to console too. The default is True.
-        tex:    bool, optional
-            return data formatted as simple LaTex-table. The default is True.
-
-        Returns
-        -------
-            all settings of the person as formatted table
-
-        """
-        try:
-            import pandas as pd
-        except ModuleNotFoundError:
-            raise ModuleNotFoundError(
-                "you need to install pandas to print a table of the parameters of the psychometric function")
-
-        # errorcheck
-        if self.states == []:  # there are no known internal states
-            return "data: {}".format(self.lastTestName)
-        else:
-            if self.fromData:
-                # calculate the transiotnmatrix
-                self.transMat = transMatFromStatesList(self.trackState)
-        checkTransMat(self.transMat, len(self.states))
-
-        labelIn = [s.name for s in self.states[0:np.shape(self.transMat)[0]]]  # make it more robust
-        labelOut = ["trans prob. to "+s.name for s in self.states[0:np.shape(self.transMat)[1]]]
-        mat = pd.DataFrame(np.transpose(self.transMat), labelOut, labelIn)
-
-        def getSettings(state):
-            return pd.DataFrame([state.thresStim,
-                                 state.threshold,
-                                 state.slope*100,
-                                 state.gues,
-                                 state.laps,
-                                 state.alpha,
-                                 state.beta],
-                                ["stimulus at threshold/ dB",
-                                 "threshold/ perc.",
-                                 "slope/ perc./dB",
-                                 "guessRate/ perc.",
-                                 "lapsRate/ perc.",
-                                 "alpha",
-                                 "beta"], [state.name])
-
-        dat = pd.concat([getSettings(s) for s in self.states], axis=1)
-
-        if toConsole:
-            if self.transMat != [[1]]:
-                print("-"*80+"\ntransition matrix:")
-                print(mat)
-            print("-"*80+"\nsettings of internal states:\n")
-            print(dat)
-            print("-"*80)
-
-        dat = pd.concat([dat, mat])
-
-        dat.style.format("{{:2.2f}}".format)
-        if tex:
-            text = dat.style.to_latex()
-            # romove some stuff so that it compiles with no hassle
-            return text.replace('\\toprule', ' ').replace('\\midrule', ' ').replace('\\bottomrule', ' ').replace("\n", " ")
-        else:
-            return dat.style.to_string()
-
-    def plot(self, axs=None, figsize=[17, 14], loc="upper right", stimulusUnits="SNR/dB", showStdBinom=True, showStats=False, snrRange=None, showLegend=True, heightRatios=[1, 1.5]):
+    def plot(self, axs=None, figsize=[17, 14], loc="upper right", stimulusUnits="SNR/dB", showStdBinom=True, showStats=True, snrRange=None, showLegend=True, heightRatios=[1, 1.5]):
         """
         plot the full history of the person: Phaseplane and adaptive track.
 
@@ -740,7 +783,7 @@ class Person:
             show the standard deviation of a binomial distribution in dotted lines
         showStats: bool, optional, default=True
             show the table with the properties of the psychometric functions
-        snrRange: float, limit the snr range to have constant scale for the axis 
+        snrRange: float, limit the snr range to have constant scale for the axis
             (uesful for comparison betwen plots), None= disabled
         showLegend: bool, show the legend of the scatter-plot
         heightRatios:list, use it to change the heightratio of the plots
@@ -858,16 +901,81 @@ class Person:
 
         # information on the states
         if self.showStatsInPlot and showStats:
-            plt.sca(axs[1])
-            plt.rc('text', usetex=True)
-            artist = AnchoredText(r'{}'.format(self.printSettings(False)), loc=loc)
-            artist.set_alpha(0)
-            axs[1].add_artist(artist)
+            try:
+                plt.sca(axs[1])
+                plt.rc('text', usetex=True)
+                artist = AnchoredText(r'{}'.format(self.printSettings(False)), loc=loc)
+                artist.set_alpha(0)
+                axs[1].add_artist(artist)
+            except:
+                pass  # may fail if latex interpreter or pandas is not present: fail gently
 
         plt.tight_layout()
         if fig is None:
             return plots
         return fig
+
+    def printSettings(self, toConsole=True, tex=True):
+        """
+        Print a summary of the settings
+
+        Parameters
+        ----------
+        toConsole : bool, optional
+            print information to console too. The default is True.
+        tex:    bool, optional
+            return data formatted as simple LaTex-table. The default is True.
+
+        Returns
+        -------
+            all settings of the person as formatted table
+
+        """
+        import pandas as pd
+
+        # errorcheck
+        if self.states == []:  # there are no known internal states
+            return "data: {}".format(self.lastTestName)
+
+        labelIn = [s.name for s in self.states[0:np.shape(self.transMat)[0]]]  # make it more robust
+        labelOut = ["trans prob. to "+s.name for s in self.states[0:np.shape(self.transMat)[1]]]
+        mat = pd.DataFrame(np.transpose(self.transMat), labelOut, labelIn)
+
+        def getSettings(state):
+            return pd.DataFrame([state.thresStim,
+                                 state.threshold,
+                                 state.slope*100,
+                                 state.gues,
+                                 state.laps,
+                                 state.alpha,
+                                 state.beta],
+                                ["stimulus at threshold",
+                                 "threshold",
+                                 "slope/ \%/1",
+                                 "guessRate",
+                                 "lapsRate",
+                                 "alpha",
+                                 "beta"], [state.name])
+
+        dat = pd.concat([getSettings(s) for s in self.states], axis=1)
+
+        if toConsole:
+            if self.transMat != [[1]]:
+                print("-"*80+"\ntransition matrix:")
+                print(mat)
+            print("-"*80+"\nsettings of internal states:\n")
+            print(dat)
+            print("-"*80)
+
+        dat = pd.concat([dat, mat])
+
+        if tex:
+            # dat.style.format("{{:2.2f}}".format)
+            text = dat.style.to_latex()
+            # romove some stuff so that it compiles with no hassle
+            return text.replace('\\toprule', ' ').replace('\\midrule', ' ').replace('\\bottomrule', ' ').replace("\n", " ")
+        else:
+            return dat.style.to_latex()
 
     def plotPsy(self, start, stop, state):
         """
@@ -878,9 +986,9 @@ class Person:
 
         Parameters
         ----------
-        start : double
+        start : float
             startRange
-        stop : double
+        stop : float
             stopRange
         state : state object
 
