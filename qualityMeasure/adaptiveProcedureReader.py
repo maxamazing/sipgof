@@ -12,8 +12,6 @@ Supports:
 import xml.etree.ElementTree as ET  # OMA reader
 from pathlib import Path
 import os
-import re  # regular experssions
-import numpy as np
 
 
 testTypes = {0: "matrix", 1: "pta"}
@@ -146,8 +144,6 @@ class OMAreader:
 """little demonstrator of how this works"""
 if __name__ == "__main__":
     # run the script from anywhere
-    from pathlib import Path
-    import os
     abspath = os.path.abspath(__file__)
     dname = os.path.dirname(abspath)
     os.chdir(dname)

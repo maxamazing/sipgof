@@ -10,7 +10,7 @@ The track is compared for the two model fits:
 @author: max scharf Do 8. Mai 13:09:03 CEST 2025 maximilian.scharf_at_uol.de
 """
 import matplotlib.pyplot as plt
-import qualityMeasure.multiStateListenerModelCollection as modelCollection
+import qualityMeasure.multiStateListener as msl
 import qualityMeasure.adaptiveProcedureReader as reader
 from pathlib import Path
 import os
@@ -27,8 +27,11 @@ readerDict = reader.OMAparse(folder)
 measID = list(readerDict.keys())[0]  # only use the first entry
 
 dat = readerDict[measID]
-res = modelCollection.mostLikelyModelA(dat["snr"], dat["response"], plot=True)
+res = msl.SiPGOF(dat["snr"], dat["response"], plot=True)
 plt.show()
 
-print("measurement: \n\t{}\nlog likelihood difference (SiPGOF): \n\t{}\n\n".format(
+print('+++++++++++1-state model++++++++++++++++\n', res['1stModel'])
+print('+++++++++++2-state model++++++++++++++++\n', res['2stModel'])
+print("+++++++++++measurement++++++++++++++++++\n",
+      "{}\n\n\tlog likelihood difference (SiPGOF):{}\n\n".format(
     measID, res[2]-res[1], ))
